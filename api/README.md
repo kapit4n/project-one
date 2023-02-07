@@ -1,4 +1,4 @@
-# school-events-dj
+# Task player
 ## 
 
 ## run project
