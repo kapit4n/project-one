@@ -2,7 +2,7 @@
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
-![Main page][https://github.com/kapit4n/project-one/blob/develop/ui/ui-progress/v1-dashboard.png?raw=true]
+![Main page](https://github.com/kapit4n/project-one/blob/develop/ui/ui-progress/v1-dashboard.png?raw=true)
 
 ## Development server
 
