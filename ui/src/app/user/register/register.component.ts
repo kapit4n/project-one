@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../shared/models/user';
 import { AuthService } from '../../shared/services/auth.service';
@@ -12,11 +12,11 @@ import { AuthService } from '../../shared/services/auth.service';
 export class RegisterComponent implements OnInit {
 
   errorMessage = '';
-  signUpForm: FormGroup;
+  signUpForm: UntypedFormGroup;
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
   ) { }
 
@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
   }
 
   mustMatchPasswords(pwd, repeatPwd) {
-    return (formGroup: FormGroup) => {
+    return (formGroup: UntypedFormGroup) => {
       const ctrl = formGroup.controls[pwd];
       const matchCtrl = formGroup.controls[repeatPwd];
       if (matchCtrl.errors && !matchCtrl.errors.mustMatch) {

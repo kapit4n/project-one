@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MustMatch } from './password-match.validator';
@@ -21,9 +21,9 @@ export class ResetPasswordCompleteComponent implements OnInit {
   url = '';
   submitted = false;
 
-  changePasswordForm: FormGroup;
+  changePasswordForm: UntypedFormGroup;
 
-  constructor(private usrSvc: UsersService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private usrSvc: UsersService, private route: ActivatedRoute, private formBuilder: UntypedFormBuilder, private router: Router) { }
 
   onSubmit() {
     this.submitted = true;

@@ -115,7 +115,6 @@
       }
     }
   },
-  "defaultProject": "project-one",
   "cli": {
     "analytics": "677dd04c-cd31-446b-9b46-e9aa9d794b7f"
   }

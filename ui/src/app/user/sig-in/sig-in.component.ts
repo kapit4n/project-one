@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/shared/services/users.service';
@@ -23,11 +23,11 @@ interface UserModel {
 })
 export class SigInComponent implements OnInit {
 
-  signInForm: FormGroup;
+  signInForm: UntypedFormGroup;
 
   constructor(private authService: AuthService,
     private userSvc: UsersService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,) { }
 
   ngOnInit(): void {

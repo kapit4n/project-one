@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TaskPage, Task } from '../../shared/models/task'
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 
 @Component({
@@ -11,12 +11,12 @@ import { TasksService } from 'src/app/shared/services/tasks.service';
 })
 export class CreateComponentDialog implements OnInit {
 
-  createForm: FormGroup;
+  createForm: UntypedFormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<CreateComponentDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Task,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private taskSvc: TasksService,
   ) {
   }
