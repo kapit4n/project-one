@@ -1,11 +1,11 @@
-<div style="padding: 0 5rem; display: flex; justify-content: flex-end;">
-    <button mat-raised-button color="primary" style="margin: 1rem;">export</button>
-    <button mat-raised-button color="primary" style="margin: 1rem;" (click)='openCreate()'>create</button>
+<div class="dashboard-actions">
+    <button mat-raised-button color="primary">export</button>
+    <button mat-raised-button color="primary" (click)='onCreateForm()'>create</button>
 </div>
-<div style="width: 400px; padding: 0 5rem;">
-    <h1>{{current?.description}} on {{current?.status}} status</h1>
+<div class="dashboard-main-task">
+    <h2>{{current?.description}} on {{current?.status}} status</h2>
     <div style="display: flex; width: 350px; justify-content: space-between;">
-        <h1 style="font-size: 3rem;">{{current?.time * 1000 | date:'H:mm:ss':'UTC'}}</h1>
+        <h1>{{current?.time * 1000 | date:'H:mm:ss':'UTC'}}</h1>
         <div *ngIf="current?.status === 'pending'"
             style="background-color: blue; width: 60px; height: 60px; cursor: pointer;" (click)="startCurrent()">
             <i style="font-size: 2rem; margin: 15px; color: white;" class="fa fa-play"></i>
@@ -21,23 +21,24 @@
     </div>
 </div>
 
-<table style="width:100%; padding: 5rem;">
+<table style="" class="dashboard-task-table">
     <tr>
-        <th style="text-align:center" style="background-color: lightblue;height: 3rem;">Description</th>
-        <th style="text-align:center" style="background-color: lightblue;height: 3rem;">Start Time</th>
-        <th style="text-align:center" style="background-color: lightblue;height: 3rem;">End Time/Paused</th>
-        <th style="text-align:center" style="background-color: lightblue;height: 3rem;">Status</th>
-        <th style="text-align:center" style="background-color: lightblue;height: 3rem;">Total</th>
-        <th style="text-align:center" style="background-color: lightblue;height: 3rem;">Action</th>
+        <th>Description</th>
+        <th>Start Time</th>
+        <th>End Time/Paused</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Action</th>
     </tr>
-    <tr *ngFor="let task of tasks" [ngStyle]="{'background-color': task.status == 'progress' ? 'lightgreen': 'transparent'}">
-        <td style="text-align:center" style="border-bottom: 1px solid black;">{{task.description}}</td>
-        <td style="text-align:center" style="border-bottom: 1px solid black;"></td>
-        <td style="text-align:center" style="border-bottom: 1px solid black;"></td>
-        <td style="text-align:center" style="border-bottom: 1px solid black;">{{task.status}}</td>
-        <td style="text-align:center" style="border-bottom: 1px solid black;">
+    <tr *ngFor="let task of tasks"
+        [ngStyle]="{'background-color': task.status == 'progress' ? 'lightgreen': 'transparent'}">
+        <td>{{task.description}}</td>
+        <td></td>
+        <td></td>
+        <td>{{task.status}}</td>
+        <td>
             {{task?.time * 1000 | date:'H:mm:ss':'UTC'}}</td>
-        <td style="text-align:center" style="border-bottom: 1px solid black;">
+        <td>
             <div style="display: flex; margin: 0.5rem 0;">
                 <div *ngIf="task?.status === 'pending'"
                     style="background-color: blue; width: 30px; height: 30px; cursor: pointer;   margin-left: 1rem;"
@@ -57,5 +58,5 @@
             </div>
         </td>
     </tr>
-    <footer style="padding: 1rem 0;">total worked: {{totalTime * 1000 | date:'H:mm:ss':'UTC'}}</footer>
+    <footer style="padding: 1rem 0;">Total worked: {{totalTime * 1000 | date:'H:mm:ss':'UTC'}}</footer>
 </table>

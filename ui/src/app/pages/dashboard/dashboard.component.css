@@ -1,0 +1,27 @@
+.dashboard-actions {
+  padding: 0 5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.dashboard-main-task {
+  width: 400px;
+  padding: 0 5rem;
+}
+
+.dashboard-task-table {
+  width: 100%;
+  padding: 5rem;
+}
+
+.dashboard-task-table td {
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.dashboard-task-table th {
+  text-align: center;
+  background-color: lightblue;
+  height: 3rem;
+}

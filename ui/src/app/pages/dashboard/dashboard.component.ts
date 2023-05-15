@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   ) {
 
   }
-  openCreate() {
+  openCreateLegacy() {
     const dialogRef = this.dialog.open(CreateDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.data.status === 'progress') {
@@ -37,6 +37,10 @@ export class DashboardComponent implements OnInit {
         }
       }
     })
+  }
+
+  onCreateForm() {
+    
   }
 
   reloadData() {
