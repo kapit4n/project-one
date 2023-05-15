@@ -123,7 +123,8 @@ class UserInfo(RetrieveAPIView):
 
     def get_object(self):
         queryset = self.get_queryset()
-        obj = get_object_or_404(queryset, email=self.request.user)
+        # have an or here to use username or email
+        obj = get_object_or_404(queryset, username=self.request.user)
         return obj
 
 

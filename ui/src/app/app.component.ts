@@ -15,12 +15,11 @@ export class AppComponent {
   constructor(
     private authService: AuthService, private userSvc: UsersService
   ) {
-    this.userInfo = { email: "", password: '', first_name: '', last_name: ''};
+    this.userInfo = { email: "", password: '', first_name: '', last_name: '' };
 
     this.userSvc.me().subscribe(data => {
       this.userInfo = data;
-    }, err => console.log(err)
-    );
+    }, err => console.log(err));
   }
 
   get isAuthenticated(): boolean {

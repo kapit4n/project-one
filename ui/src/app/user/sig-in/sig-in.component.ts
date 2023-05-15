@@ -46,8 +46,9 @@ export class SigInComponent implements OnInit {
       this.userSvc.me().subscribe(data => {
         this.authService.setUserData(data);
         this.router.navigate(['home']);
-      }, err => console.log(err)
-      );
+      }, err => console.log(err));
+
+      this.router.navigate(['home']);
       // verify that we have a valid token
 
       // this.authToken = res.token
