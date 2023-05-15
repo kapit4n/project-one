@@ -1,14 +1,14 @@
 <h2 mat-dialog-title>Create task</h2>
 <mat-dialog-content>
   <form [formGroup]="createForm" id="create-task-form">
-    <mat-form-field>
+    <mat-form-field  appearance="fill">
       <mat-label>
         Description
       </mat-label>
-      <input matInput formControlName="description" />
+      <input matInput formControlName="description" placeholder="description"/>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field  appearance="outline">
       <mat-label>
         status
       </mat-label>
@@ -19,7 +19,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field  appearance="fill">
       <mat-label>
         Priority
       </mat-label>

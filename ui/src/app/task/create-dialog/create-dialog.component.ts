@@ -1,20 +1,22 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+//import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
 import { TaskPage, Task } from '../../shared/models/task'
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 
 @Component({
   selector: 'app-create-dialog',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  templateUrl: './create-dialog.component.html',
+  styleUrls: ['./create-dialog.component.css']
 })
-export class CreateComponentDialog implements OnInit {
+export class CreateDialogComponent implements OnInit {
 
   createForm: UntypedFormGroup;
 
-  constructor(
-    public dialogRef: MatDialogRef<CreateComponentDialog>,
+  constructor(public dialog: MatDialog,
+    public dialogRef: MatDialogRef<CreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Task,
     private formBuilder: UntypedFormBuilder,
     private taskSvc: TasksService,
@@ -42,12 +44,12 @@ export class CreateComponentDialog implements OnInit {
       if (startNow) {
         const taskLog = { task: res.id, start_date: new Date().toISOString(), status: 'progress' };
         this.taskSvc.createLog(taskLog).subscribe(tl => {
-          console.log(tl);
           this.dialogRef.close({ data: res });
         });
       }
     });
   }
+  
 
   onStartNow() {
 

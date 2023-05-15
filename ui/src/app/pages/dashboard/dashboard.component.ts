@@ -3,7 +3,7 @@ import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Task } from '../../shared/models/task'
 import { TasksService } from 'src/app/shared/services/tasks.service';
 
-import { CreateComponentDialog } from '../../task/create/create.component';
+import { CreateDialogComponent } from '../../task/create-dialog/create-dialog.component';
 
 import { forkJoin } from 'rxjs';
 
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   }
   openCreate() {
-    const dialogRef = this.dialog.open(CreateComponentDialog);
+    const dialogRef = this.dialog.open(CreateDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.data.status === 'progress') {
         this.current = result.data;

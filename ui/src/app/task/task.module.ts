@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
-import { CreateComponentDialog } from './create/create.component';
+import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 
 @NgModule({
   declarations: [
-    CreateComponentDialog,
+    CreateDialogComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
   ],
-  exports: [CreateComponentDialog]
+  exports: [CreateDialogComponent]
 })
 export class TaskModule { }
