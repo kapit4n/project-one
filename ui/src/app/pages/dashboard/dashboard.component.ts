@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Task } from '../../shared/models/task'
 import { TasksService } from 'src/app/shared/services/tasks.service';
 
