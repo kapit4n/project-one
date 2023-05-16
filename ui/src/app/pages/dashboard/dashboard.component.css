@@ -6,8 +6,41 @@
 }
 
 .dashboard-main-task {
-  width: 400px;
   padding: 0 5rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  align-content: center;
+}
+
+.dashboard-main-task-actions {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+}
+
+.main-task-pending {
+  background-color: blue;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.main-task-pending-and-progress {
+  background-color: red;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.main-task-progress {
+  background-color: skyblue;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
 }
 
 .dashboard-task-table {
@@ -24,4 +57,54 @@
   text-align: center;
   background-color: lightblue;
   height: 3rem;
+}
+
+.form-group-create {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 5rem;
+}
+
+.dashboard-task-table-action-row {
+  display: flex;
+  margin: 0.5rem 0;
+}
+
+.stop-action {
+  background-color: black;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.remove-action {
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.progress-action {
+  background-color: skyblue;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.pending-action {
+  background-color: blue;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+i {
+  font-size: 1rem;
+  margin: 5px;
+  color: white;
 }

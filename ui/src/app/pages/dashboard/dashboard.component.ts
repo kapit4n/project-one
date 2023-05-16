@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { FormControl } from '@angular/forms';
 import { Task } from '../../shared/models/task'
 import { TasksService } from 'src/app/shared/services/tasks.service';
 
-import { CreateDialogComponent } from '../../task/create-dialog/create-dialog.component';
-
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,36 +13,40 @@ export class DashboardComponent implements OnInit {
   tasks: Task[] = []
   current: Task;
   totalTime = 0;
-  constructor(public dialog: MatDialog,
-    private _tasksService: TasksService
+
+  description = new FormControl("");
+  status = new FormControl("pending");
+  estimatedTime = new FormControl(0);
+  time = new FormControl(0);
+  constructor(private _tasksService: TasksService
   ) {
 
   }
-  openCreateLegacy() {
-    const dialogRef = this.dialog.open(CreateDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result.data.status === 'progress') {
-        this.current = result.data;
-        const filteredtasks = this.tasks.filter(t => t.status === 'progress');
-        if (filteredtasks.length > 0) {
-          const rToUpdate = filteredtasks.map(fu => this._tasksService.update(fu.id, Object.assign(fu, { status: 'pending' })));
-          forkJoin(rToUpdate).subscribe(dd => {
-            this.tasks.push(result.data);
-          })
-        } else {
-          this.tasks.push(result.data);
-        }
-      }
-    })
-  }
 
   onCreateForm() {
-    
+
+  }
+
+  onSaveNewTask() {
+    const task: Task = {
+      description: this.description.value,
+      status: this.status.value,
+      stimated: this.estimatedTime.value,
+      time: this.time.value
+    }
+
+    this._tasksService.create(task).subscribe(taskCreated => {
+      this.reloadData()
+      this.description.setValue("")
+      this.estimatedTime.setValue(0)
+      this.time.setValue(0)
+    })
   }
 
   reloadData() {
     this._tasksService.list()
       .subscribe(tasks => {
+        console.log(tasks)
         this.tasks = tasks.results
         this.tasks.forEach(element => {
           if (element.status === 'progress') {
@@ -133,6 +134,12 @@ export class DashboardComponent implements OnInit {
     task.status = 'finished';
     this._tasksService.update(task.id, task).subscribe(result => {
       console.log(result);
+    });
+  }
+
+  removeTask(task) {
+    this._tasksService.remove(task.id).subscribe(result => {
+      this.reloadData();
     });
   }
 }

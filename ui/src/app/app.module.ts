@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { UserModule } from './user/user.module';
 import { TaskModule } from './task/task.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/token.interceptor';
@@ -31,6 +32,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

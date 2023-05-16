@@ -4,24 +4,45 @@
 </div>
 <div class="dashboard-main-task">
     <h2>{{current?.description}} on {{current?.status}} status</h2>
-    <div style="display: flex; width: 350px; justify-content: space-between;">
+    <div class="dashboard-main-task-actions">
         <h1>{{current?.time * 1000 | date:'H:mm:ss':'UTC'}}</h1>
-        <div *ngIf="current?.status === 'pending'"
-            style="background-color: blue; width: 60px; height: 60px; cursor: pointer;" (click)="startCurrent()">
+        <div class="main-task-pending" *ngIf="current?.status === 'pending'"
+            (click)="startCurrent()">
             <i style="font-size: 2rem; margin: 15px; color: white;" class="fa fa-play"></i>
         </div>
-        <div *ngIf="current?.status === 'progress'"
-            style="background-color: skyblue; width: 60px; height: 60px; cursor: pointer;" (click)="continueCurrent()">
+        <div class="main-task-pending" *ngIf="current?.status === 'progress'"
+            (click)="continueCurrent()">
             <i style="font-size: 2rem; margin: 15px; color: white;" class="fa fa-pause"></i>
         </div>
-        <div *ngIf="current?.status === 'progress' || current?.status === 'pending'"
-            style="background-color: red; width: 60px; height: 60px;  cursor: pointer;" (click)="finishCurrent()">
+        <div class="main-task-pending-and-progress" *ngIf="current?.status === 'progress' || current?.status === 'pending'"
+            (click)="finishCurrent()">
             <i style="font-size: 2rem;  margin: 15px; color: white;" class="fa fa-stop"></i>
         </div>
     </div>
 </div>
 
-<table style="" class="dashboard-task-table">
+<div class="form-group-create">
+    <mat-label for="description">
+        Description
+    </mat-label>
+    <input name="description" matInput [formControl]="description" placeholder="description" />
+
+    <mat-label for="status"> status </mat-label>
+    <mat-select name="status" style="width: 100px;" [formControl]="status">
+        <mat-option *ngFor="let st of ['pending', 'progress', 'done']" [value]="st">
+            {{st}}
+        </mat-option>
+    </mat-select>
+    <mat-label> Estimated Time </mat-label>
+    <input matInput type="number" [formControl]="estimatedTime" />
+    <mat-label>
+        Time
+    </mat-label>
+    <input matInput type="number" [formControl]="time" />
+    <button mat-button (click)="onSaveNewTask()">Save</button>
+</div>
+
+<table class="dashboard-task-table">
     <tr>
         <th>Description</th>
         <th>Start Time</th>
@@ -39,21 +60,19 @@
         <td>
             {{task?.time * 1000 | date:'H:mm:ss':'UTC'}}</td>
         <td>
-            <div style="display: flex; margin: 0.5rem 0;">
-                <div *ngIf="task?.status === 'pending'"
-                    style="background-color: blue; width: 30px; height: 30px; cursor: pointer;   margin-left: 1rem;"
-                    (click)="startTask(task)">
-                    <i style="font-size: 1rem; margin: 5px; color: white;" class="fa fa-play"></i>
+            <div class="dashboard-task-table-action-row">
+                <div class="pending-action" *ngIf="task?.status === 'pending'" (click)="startTask(task)">
+                    <i class="fa fa-play"></i>
                 </div>
-                <div *ngIf="task?.status === 'progress'"
-                    style="background-color: skyblue; width: 30px; height: 30px; cursor: pointer; margin-left: 1rem;"
-                    (click)="pauseTask(task)">
-                    <i style="font-size: 1rem; margin: 5px; color: white;" class="fa fa-pause"></i>
+                <div *ngIf="task?.status === 'progress'" class="progress-action" (click)="pauseTask(task)">
+                    <i class="fa fa-pause"></i>
                 </div>
-                <div *ngIf="task?.status === 'progress' || task?.status === 'pending'"
-                    style="background-color: red; width: 30px; height: 30px;  cursor: pointer;   margin-left: 1rem;"
-                    (click)="finishTask(task)">
-                    <i style="font-size: 1rem;  margin: 5px; color: white;" class="fa fa-stop"></i>
+                <div class="stop-action"
+                    *ngIf="task?.status === 'progress' || task?.status === 'pending'" (click)="finishTask(task)">
+                    <i class="fa fa-stop"></i>
+                </div>
+                <div class="remove-action"  (click)="removeTask(task)">
+                    <i class="fa fa-remove"></i>
                 </div>
             </div>
         </td>
